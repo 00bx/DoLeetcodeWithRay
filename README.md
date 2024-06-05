@@ -220,7 +220,7 @@ ray()->clearAll(); // Clear previous Ray output
         </ul>
     </li>
 </ul>
-<p>&copy; 2024 Zemen (00bx). All rights reserved. 🌟 Keep pushing forward and happy coding! 🚀</p>
+<p>&copy; 2024 Zemen (00bx). All rights reserved. 🌟 hope ya have a happy coding ^^🚀</p>
 
 
 </body>
