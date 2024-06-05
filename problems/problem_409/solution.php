@@ -7,33 +7,27 @@ class Solution {
      */
     public function longestPalindrome($s) {
         ray('Starting longestPalindrome with input:', $s); // Debug start
-
-        $charCount = array_fill(0, 128, 0); // ASCII range for upper and lower case letters
-
-        // Count the frequency of each character
-        for ($i = 0; $i < strlen($s); $i++) {
-            $charCount[ord($s[$i])]++;
-        }
-
-        ray('Character counts:', $charCount); // Debug character counts
-
         $length = 0;
         $oddFound = false;
+        $countChars = array_fill(0,120,0);
 
-        // Calculate the length of the longest palindrome
-        for ($i = 0; $i < 128; $i++) {
-            if ($charCount[$i] % 2 == 0) {
-                $length += $charCount[$i];
-            } else {
-                $length += $charCount[$i] - 1;
-                $oddFound = true;
+        for ($i = 0; $i< strlen($s); $i++){
+           $countChars[ord($s[$i])]++; //adding +1 to chaarcter but as asc range
+        }
+
+        ray("char counts based on a asc number index is : " , $countChars );
+
+        for($i = 0; $i < 128; $i++){
+            if ($countChars[$i]%2 == 0){
+                $length+=$countChars[$i];
+            }else{
+             $oddFound = true;
+             $length+=$countChars[$i] - 1;
             }
         }
 
-        // If there was any odd count, we can add one center character
-        if ($oddFound) {
+        if ($oddFound)
             $length++;
-        }
 
         ray('Final palindrome length:', $length); // Debug final length
 
