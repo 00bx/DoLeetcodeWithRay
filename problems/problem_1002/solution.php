@@ -2,40 +2,47 @@
 
 class Solution {
     /**
-     * @param String[] $words
-     * @return String[]
+     * @param Integer[] $nums1
+     * @param Integer[] $nums2
+     * @return Integer[]
      */
-    public function commonChars($words) {
-        ray('Starting commonChars with input:', $words); // Debug start
-        if (empty($words))
-            return [];
-        $minFreq = array_fill(0,26,PHP_INT_MAX);
+    public function intersect($nums1, $nums2) {
+        ray('Starting with input:', $nums1 , "and " , $nums2); // Debug start
         $result = [];
-        foreach ($words as $word){
-            $charCounts = array_fill(0,26,0);
-            foreach (str_split($word) as $char){
-                $charCounts[ord($char) - ord('a')]++;
-                ray("character : " . $char);
-            }
+        $nums1Length = count($nums1);
+        $nums2Length = count($nums2);
+        $length = $nums1Length < $nums2Length ? $nums1Length : $nums2Length;
+        if ($nums1Length == $length){
+            for ($i = 0; $i<$length; $i++){
+                for ($l = 0; $l<$nums2Length; $l++){
+                    if ($nums1[$i] == $nums2[$l]){
+                        $result [] = $nums1[$i];
+                        unset($nums2[$l]);
+                        $nums2 = array_values($nums2);
+                        $nums2Length--;
+                        break;
+                    }
 
-            for ($i = 0; $i < 26; $i++){
-                ray("min frequence at i = $i " , $minFreq[$i] , "char counts at i = $i " , $charCounts[$i]);
-                ray("character is : " ,chr($i + ord('a')) );
-                $minFreq[$i] = min($minFreq[$i],$charCounts[$i]);
-                ray("minFreq = " ,$minFreq);
+                }
+            }
+        }else{
+            for ($i = 0; $i<$length; $i++){
+                for ($l = 0; $l<$nums1Length; $l++){
+                    if ($nums2[$i] == $nums1[$l]  ){
+                        $result [] = $nums2[$i];
+                        unset($nums1[$l]);
+                        $nums1 = array_values($nums1);
+                        $nums1Length--;
+                        break;
+
+                    }
+
+                }
             }
         }
-        ray("charcount chars", $charCounts);
-
-        for ($i = 0; $i < 26; $i++){
-            if ($minFreq[$i] > 0){
-                $result = array_merge($result,array_fill(0,$minFreq[$i],chr($i + ord('a'))));
-            }
-        }
 
 
-
-        ray('Final commonChars :', $result); // Debug final length
+        ray('Final answer :', $result); // Debug final length
 
         return $result;
     }
