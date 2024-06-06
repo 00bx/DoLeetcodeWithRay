@@ -1,3 +1,4 @@
+@@ -0,0 +1,33 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
@@ -11,26 +12,23 @@ class TestCases extends TestCase {
         \ray()->clearAll(); // Clear previous Ray output
 
         // Example 1
-        $input1 = [1,2,2,1];
-        $input2 = [2,2];
-        $expected = [2,2];
-        $result = $solution->intersect($input1 , $input2 );
+        $input = ["bella", "label", "roller"];
+        $expected = ["e", "l", "l"];
+        $result = $solution->commonChars($input);
         if ($result === $expected) {
-            ray("Test case 1 - Input: " . json_encode($input1) . " and " . json_encode($input2) .  ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->green();
+            ray("Test case 1 - Input: " . json_encode($input) . ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->green();
         } else {
-            ray("Test case 1 - Input: " . json_encode($input1) . " and " . json_encode($input2) .  ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->red();
+            ray("Test case 1 - Input: " . json_encode($input) . ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->red();
         }
 
         // Example 2
-        $input1 = [4,9,5];
-        $input2 =  [9,4,9,8,4];
-        $expected = [4,9];
-        $result = $solution->intersect($input1 , $input2 );
+        $input = ["cool", "lock", "cook"];
+        $expected = ["c", "o"];
+        $result = $solution->commonChars($input);
         if ($result === $expected) {
-            ray("Test case 1 - Input: " . json_encode($input1) . " and " . json_encode($input2) .  ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->green();
+            ray("Test case 2 - Input: " . json_encode($input) . ",\n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->green();
         } else {
-            ray("Test case 1 - Input: " . json_encode($input1) . " and " . json_encode($input2) .  ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->red();
+            ray("Test case 2 - Input: " . json_encode($input) . ", \n Expected: " . json_encode($expected) . ", \n Got: " . json_encode($result))->red();
         }
-
     }
 }
