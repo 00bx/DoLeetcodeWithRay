@@ -12,21 +12,17 @@ class Solution {
         $countChars = array_fill(0,120,0);
 
         for ($i = 0; $i< strlen($s); $i++){
-           $countChars[ord($s[$i])]++; //adding +1 to chaarcter but as asc range
+            $asc = ord($s[$i]);
+           $countChars[$asc]++; //adding +1 to chaarcter but as asc range
+            if($asc%2==0){
+                $length+=2;
+            }
         }
 
         ray("char counts based on a asc number index is : " , $countChars );
 
-        for($i = 0; $i < 128; $i++){
-            if ($countChars[$i]%2 == 0){
-                $length+=$countChars[$i];
-            }else{
-             $oddFound = true;
-             $length+=$countChars[$i] - 1;
-            }
-        }
 
-        if ($oddFound)
+        if ($length < strlen($s))
             $length++;
 
         ray('Final palindrome length:', $length); // Debug final length
